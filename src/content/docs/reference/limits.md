@@ -7,7 +7,7 @@ Early access means gaps. This page lists the ones we know about so you do not ha
 
 | Area | Limit |
 |---|---|
-| **Cypher** | A documented subset. Some functions are parsed but not yet supported (for example `type(r)` in aggregations); they return a `400` naming the construct. No conformance claim to openCypher or ISO GQL. |
+| **Cypher** | A documented subset. Some functions are parsed but not yet supported (`type(r)`, `properties(n)`); they return a `400` naming the construct. A query with no label (`MATCH (n) RETURN count(n)`) returns `0`. No conformance claim to openCypher or ISO GQL. |
 | **SPARQL** | SPARQL 1.1 query. No federated query, no SPARQL 1.2. |
 | **SHACL** | Core constraints and SPARQL constraints, with stated gaps; no reusable SPARQL constraint components, no SHACL rules. See [Standards](/docs/reference/standards/). |
 | **RDF formats** | Import: Turtle, N-Triples, JSON-LD. Export: Turtle, JSON-LD, N-Triples, N-Quads. No RDF/XML or TriG through the API. |

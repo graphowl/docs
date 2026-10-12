@@ -77,8 +77,8 @@ Next: [From a database to an ontology](/docs/guides/database-to-ontology/), or [
 
 The early-access container runs on your machine with Docker. It is provided **under the [evaluation licence](/docs/project/licences/)** for 90 days, for evaluation only, not production.
 
-1. **Request access.** Email [connect@graphowl.app](mailto:connect@graphowl.app) with your name, organisation and what you want to evaluate. You will receive a registry token and the image name.
-2. **Start it.** See [Run it yourself](/docs/operators/deploy/) for the compose file: a Postgres database with pgvector, plus the GraphOWL server.
+1. **Request access.** Email [connect@graphowl.app](mailto:connect@graphowl.app) with your name, organisation and what you want to evaluate. Include your GitHub username: you are added as a reader of the private package and sent the image tag.
+2. **Start it.** See [Run it yourself](/docs/operators/deploy/): log in to the registry, then `docker compose up -d` starts a Postgres database with pgvector and the GraphOWL server.
 3. **Check it.** `curl http://localhost:8080/health`, then follow the steps on the demo tab against `http://localhost:8080`.
 
 Until you have a token, use the demo tab: the steps are the same.
