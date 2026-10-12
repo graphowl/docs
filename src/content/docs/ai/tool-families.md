@@ -114,15 +114,15 @@ The 101 tools, grouped by purpose. The first sentence of each description is sho
 | [`install_pack`](/ai/mcp-tools/#install_pack) | Load a pack into the graph. |
 | [`list_imports`](/ai/mcp-tools/#list_imports) | List import sources with their live fact count — the way to see what data is actually loaded, and to spot the same file landed twice under two sources before it doubles every finding. |
 | [`list_packs`](/ai/mcp-tools/#list_packs) | Every pack this deployment knows about, on disk or installed. |
-| [`list_uploaded_files`](/ai/mcp-tools/#list_uploaded_files) | **Call this before answering a question about a client's uploaded data, before proposing terms meant to fit real columns, and before building an ontology meant to fit real data**: the data is the evidence a proposal has to be justified against, and a term nothing in it supports is a guess. |
+| [`list_uploaded_files`](/ai/mcp-tools/#list_uploaded_files) | List every dataset uploaded into the connected application — the registers, statements, payments and receipt files a client has uploaded for a period, with client, period, kind, name and row count, never the rows themselves. |
 | [`list_users`](/ai/mcp-tools/#list_users) | Every user this deployment knows — the ids `assign_term_reviewer` takes. |
 | [`list_virtual_graphs`](/ai/mcp-tools/#list_virtual_graphs) | List a workspace's virtual graphs — the mappings that let a source database be asked questions in place, nothing copied. |
 | [`load_source_sample`](/ai/mcp-tools/#load_source_sample) | Load a bounded sample of a scanned database's rows into its own graph (`graph:import:sample-{service}`), as instances of the classes a person has approved — only approved tables and columns load, and a reference lands on a row that is itself loaded. |
 | [`merge_pack`](/ai/mcp-tools/#merge_pack) | Merge a pack's own **approved glossary** into its installed ontology — the step between a term being approved and it being installed. |
 | [`pack_context`](/ai/mcp-tools/#pack_context) | Read everything that already exists in a pack and its glossary **before proposing anything into them**: the pack's ontology document (its existing classes, object properties and data properties), and the glossary's terms with their mapping decisions, asserted relations, and proposals still awaiting a person. |
-| [`read_uploaded_file`](/ai/mcp-tools/#read_uploaded_file) | Use the exact `clientId`, `periodId` and `kind` from `list_uploaded_files` — never invent one. |
+| [`read_uploaded_file`](/ai/mcp-tools/#read_uploaded_file) | Read one uploaded dataset in full — its headers and rows, as the connected application itself parsed and stored them. |
 | [`register_source`](/ai/mcp-tools/#register_source) | Record where a body of terms comes from, before extracting any: a statute, a return format, an API schema, an existing ontology. |
-| [`replay_import`](/ai/mcp-tools/#replay_import) | Admin-only: this writes. |
+| [`replay_import`](/ai/mcp-tools/#replay_import) | Re-run one customer's period through the connected application's own loader — the operation that makes a loader fix take effect. |
 | [`resolve_entity`](/ai/mcp-tools/#resolve_entity) | Given a name or id from unstructured text, find which real catalog assets it most likely refers to. |
 | [`resolve_user`](/ai/mcp-tools/#resolve_user) | The users whose id, display name or email match a query — resolving a reviewer from a name or address you already have, without enumerating every user in the deployment. |
 | [`write_pack_glossary`](/ai/mcp-tools/#write_pack_glossary) | Write a pack's own `glossary.ttl` — the SKOS half, symmetric with `write_pack_ontology`. |

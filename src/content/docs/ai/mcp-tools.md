@@ -74,7 +74,7 @@ Every open obligation for one subject — a due date and how many days remain (n
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | yes |  |
+| `pack` | string | yes | The pack whose obligations to check, e.g. "dairy". |
 | `subject` | string | yes | The subject to check, as an IRI. |
 
 ## `check_model_data`
@@ -142,7 +142,7 @@ Create a new, empty pack: a directory and a `pack.toml` header. Refuses if a pac
 | `description` | string | yes | What this pack is for, one sentence. |
 | `namespace` | string | yes | The IRI prefix every term in this pack is minted under, ending in `#` or `/`. |
 | `pack` | string | yes | The new pack's id — lower-case letters, digits, `-` and `_` only. |
-| `prefix` | string | yes |  |
+| `prefix` | string | yes | The short prefix used in the pack's own vocabulary, e.g. "dairy". |
 
 ## `create_quality_test`
 
@@ -241,8 +241,8 @@ Register one named SPARQL query on a pack, so a finding rule can refer to it. De
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `name` | string | yes | The name a rule refers to, e.g. "missing-in-gstr2b". Lower-case letters, digits and hyphens. |
-| `pack` | string | yes |  |
+| `name` | string | yes | The name a rule refers to, e.g. "missing-in-statement". Lower-case letters, digits and hyphens. |
+| `pack` | string | yes | The pack to register the query on, e.g. "dairy-demo". |
 | `query` | string | yes | The SPARQL text. |
 
 ## `deprecate_term`
@@ -297,7 +297,7 @@ What an extraction worker may assert against a pack's ontology — the subject t
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | yes | The pack id, e.g. |
+| `pack` | string | yes | The pack id, e.g. `dairy`. |
 
 ## `find_evidence`
 
@@ -405,13 +405,13 @@ List the findings queue, newest first — every recorded conclusion this deploym
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | no |  |
+| `pack` | string | no | Optional — narrow to one pack, e.g. "dairy". |
 | `status` | string | no | Optional — narrow to one review state. Omit to see all. |
 | `workspace` | string | no | Optional — narrow to one customer, by the slug `list_workspaces` returns or their display name. Omit to list every customer's findings. |
 
 ## `list_imports`
 
-List import sources with their live fact count — the way to see what data is actually loaded, and to spot the same file landed twice under two sources before it doubles every finding. **Pass `workspace` whenever the question is about one customer**, or you will be reading every customer's sources and filtering by eye: that is how an investigation into one customer concluded only their GSTR-2B was loaded when all seven of their datasets were present. Resolve the customer's name to a slug with `list_workspaces` first. Omitting it lists the whole deployment, which is what an operator wants and almost never what a question about a named customer wants.
+List import sources with their live fact count — the way to see what data is actually loaded, and to spot the same file landed twice under two sources before it doubles every finding. **Pass `workspace` whenever the question is about one customer**, or you will be reading every customer's sources and filtering by eye: that is how an investigation into one customer concluded only one of their datasets was loaded when all seven of them were present. Resolve the customer's name to a slug with `list_workspaces` first. Omitting it lists the whole deployment, which is what an operator wants and almost never what a question about a named customer wants.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -439,7 +439,7 @@ List one pack's registered named queries and the bindings each requires — how 
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | yes |  |
+| `pack` | string | yes | The pack to list, e.g. "dairy". |
 
 ## `list_packs`
 
@@ -455,7 +455,7 @@ Every revision of one term's definition, synonyms or abbreviations, most recent 
 
 ## `list_uploaded_files`
 
-**Call this before answering a question about a client's uploaded data, before proposing terms meant to fit real columns, and before building an ontology meant to fit real data**: the data is the evidence a proposal has to be justified against, and a term nothing in it supports is a guess.
+List every dataset uploaded into the connected application — the registers, statements, payments and receipt files a client has uploaded for a period, with client, period, kind, name and row count, never the rows themselves. **Call this before answering a question about a client's uploaded data, before proposing terms meant to fit real columns, and before building an ontology meant to fit real data**: the data is the evidence a proposal has to be justified against, and a term nothing in it supports is a guess. Returns nothing when this deployment has no connected-application URL configured, which is said explicitly rather than reported as an empty list.
 
 ## `list_users`
 
@@ -524,7 +524,7 @@ Read everything that already exists in a pack and its glossary **before proposin
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `glossaryId` | string | no | The glossary to read — an id or a name. Optional when `pack` resolves to one. |
-| `pack` | string | no | Omit it only when you are proposing into a glossary no pack uses yet. |
+| `pack` | string | no | The pack to read, e.g. "dairy". Omit it only when you are proposing into a glossary no pack uses yet. |
 
 ## `pipeline_status`
 
@@ -656,12 +656,12 @@ Propose a batch of terms into one glossary, as drafts. Returns one outcome per t
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `glossaryId` | string | yes | The glossary to propose into — its id, or its exact name (e.g. `GST_New`). A name is resolved automatically; if it does not match exactly one glossary, the call comes back not found. |
+| `glossaryId` | string | yes | The glossary to propose into — its id, or its exact name (e.g. `Dairy_Demo`). A name is resolved automatically; if it does not match exactly one glossary, the call comes back not found. |
 | `terms` | array | yes | The terms. Send all of them in one call — the per-item outcomes are what make that safe. |
 
 ## `query_graph`
 
-Ask the graph directly, in SPARQL, for questions the other tools do not shape. Results are filtered to what you may see. Prefer the task-shaped tools where one fits — this one makes you do the traversal yourself. Import-sourced facts (anything from a pack or a connector) live in named graphs, not the default graph — wrap patterns in `GRAPH ?g { ... }` to reach them; a bare `{ ?s ?p ?o }` with no GRAPH clause only matches schema/vocabulary facts and returns an empty, valid-looking answer for everything else. `GRAPH <exact-iri> { ... }` with a literal graph name is unreliable here — use a variable and `FILTER(CONTAINS(STR(?g), "..."))` instead. This is also how to find data `traverse`/`analytics` cannot reach: an unmatched invoice with no edge into any customer's connected subgraph is still real, imported data — take a source name from `list_imports` and filter on it this way to see everything that source loaded, whether or not anything points to it. **Pass `workspace` whenever the question is about a named customer.** Without it this reads every customer's facts at once, and the answer is then only as narrow as a filter you had to know the shape of — which is how an investigation into one customer concluded only their GSTR-2B was loaded while all seven of their datasets sat in the store. Resolve the name with `list_workspaces` first.
+Ask the graph directly, in SPARQL, for questions the other tools do not shape. Results are filtered to what you may see. Prefer the task-shaped tools where one fits — this one makes you do the traversal yourself. Import-sourced facts (anything from a pack or a connector) live in named graphs, not the default graph — wrap patterns in `GRAPH ?g { ... }` to reach them; a bare `{ ?s ?p ?o }` with no GRAPH clause only matches schema/vocabulary facts and returns an empty, valid-looking answer for everything else. `GRAPH <exact-iri> { ... }` with a literal graph name is unreliable here — use a variable and `FILTER(CONTAINS(STR(?g), "..."))` instead. This is also how to find data `traverse`/`analytics` cannot reach: an unmatched invoice with no edge into any customer's connected subgraph is still real, imported data — take a source name from `list_imports` and filter on it this way to see everything that source loaded, whether or not anything points to it. **Pass `workspace` whenever the question is about a named customer.** Without it this reads every customer's facts at once, and the answer is then only as narrow as a filter you had to know the shape of — which is how an investigation into one customer concluded only one of their datasets was loaded while all seven of them sat in the store. Resolve the name with `list_workspaces` first.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -691,12 +691,12 @@ Ask a source database a question in place, through a virtual graph's approved ma
 
 ## `read_uploaded_file`
 
-Use the exact `clientId`, `periodId` and `kind` from `list_uploaded_files` — never invent one. This dataset is *not* in the graph and is not a catalog asset: reading it here answers a question about the file, and getting its contents into the graph is still `register_source` and the pack pipeline.
+Read one uploaded dataset in full — its headers and rows, as the connected application itself parsed and stored them. Use the exact `clientId`, `periodId` and `kind` from `list_uploaded_files` — never invent one. `rowLimit` is present when the connected application's own preview cap truncated `rows` below `totalRows`. This dataset is *not* in the graph and is not a catalog asset: reading it here answers a question about the file, and getting its contents into the graph is still `register_source` and the pack pipeline.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `clientId` | string | yes | The clientId from `list_uploaded_files`. |
-| `kind` | string | yes | The kind from `list_uploaded_files`, e.g. books, gstr1, gstr2a, gstr2b, gstr3b, payments, grn. |
+| `kind` | string | yes | The kind from `list_uploaded_files`, e.g. books, statements, payments, receipts. |
 | `periodId` | string | yes | The periodId from `list_uploaded_files`. |
 
 ## `recall_memory`
@@ -714,7 +714,7 @@ Run a pack's registered rules and record what they conclude as findings — the 
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | yes |  |
+| `pack` | string | yes | The pack to reconcile, e.g. "dairy". |
 | `workspace` | string | no | Narrow to one customer's own graphs — the slug `list_workspaces` returns for them. Omit only on a deployment where every graph belongs to one customer. |
 
 ## `record_investigation`
@@ -746,7 +746,7 @@ Record where a body of terms comes from, before extracting any: a statute, a ret
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `columnMapping` | object | no | Optional — how the loader's columns map to the pack predicates this source justifies, e.g. `{"ARN": "gstnew:ARN"}`. Recorded so provenance is column-level rather than only source-graph-level: 'why is this value here' can name the column it came from. Omit for a source registered from a citation alone. |
+| `columnMapping` | object | no | Optional — how the loader's columns map to the pack predicates this source justifies, e.g. `{"LOT": "dairy:lotId"}`. Recorded so provenance is column-level rather than only source-graph-level: 'why is this value here' can name the column it came from. Omit for a source registered from a citation alone. |
 | `contact` | string | no | Required for `licenceRequired`: who to ask. |
 | `content` | string | no | The source text, hashed so a later change is visible. Omit if you only have the citation. |
 | `effectiveDate` | string | no | ISO date the content took effect. For a dated provision this is the whole point. |
@@ -762,7 +762,7 @@ Record where a body of terms comes from, before extracting any: a statute, a ret
 
 ## `replay_import`
 
-Admin-only: this writes.
+Re-run one customer's period through the connected application's own loader — the operation that makes a loader fix take effect. **GraphOWL cannot do this itself**: it holds facts, not the uploaded file, so replaying from its own store would replay the old output. The connected application holds the rows and its reconcile re-runs the current loader over them (delete-then-import per source, then the findings pass) — the console's "Run reconciliation" button. Returns the application's report verbatim: read `ok`/`error` and the per-source `ingested` counts, never the absence of an error. Admin-only: this writes.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -826,7 +826,7 @@ Run one of a pack's registered named queries — a bound lookup (e.g. "which pro
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `bindings` | object | no |  |
-| `pack` | string | yes |  |
+| `pack` | string | yes | The pack the query belongs to, e.g. "dairy". |
 | `query` | string | yes | The query's own name, e.g. "provision-in-force". |
 
 ## `run_reasoning`
@@ -844,8 +844,8 @@ Evaluate one named rule from a pack and record what it concludes as findings —
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `label` | string | yes |  |
-| `pack` | string | yes |  |
+| `label` | string | yes | The rule's own label, e.g. "dairy:ColdChainBreach". |
+| `pack` | string | yes | The pack the rule belongs to, e.g. "dairy". |
 
 ## `run_validation`
 
@@ -913,7 +913,7 @@ Walk a bounded neighbourhood outward from a subject, within a hop limit. Accepts
 
 ## `update_term`
 
-Correct a term's own fields — its definition, synonyms, abbreviations, or its owlKind mapping (domain/range/instanceOf). **Its definition, synonyms and abbreviations are a person's decision**: ask the person, then send `decidedBy` (their name) and `humanDecision` (their words) with the change. It is applied, the term stays approved and its version moves, and what it said before, who decided and their words are kept. Refused without both. A **deprecated** term's wording is never revised — create a successor instead. `glossary.ttl` is refreshed by `write_pack_glossary`; an ontology comment already written is not rewritten by `merge_pack`, which only appends. Only the fields you send change; omit a field to leave it as is. **`owlKind`, when sent, replaces the whole mapping** — send `domain`/`range`/`instanceOf` again alongside it even where they are unchanged.
+Correct a term's own fields — its definition, synonyms, abbreviations, or its owlKind mapping (domain/range/instanceOf). **On a draft or in-review term, any of them.** On an **approved** term the owlKind mapping can be corrected on its own — importing a pack's SKOS glossary creates every term `approved` with a bare `class` mapping, because a SKOS concept says nothing about what OWL thing it becomes, and an identifier like a tax number typed `class` would otherwise be baked into the ontology. **Its definition, synonyms and abbreviations are a person's decision**: ask the person, then send `decidedBy` (their name) and `humanDecision` (their words) with the change. It is applied, the term stays approved and its version moves, and what it said before, who decided and their words are kept. Refused without both. A **deprecated** term's wording is never revised — create a successor instead. `glossary.ttl` is refreshed by `write_pack_glossary`; an ontology comment already written is not rewritten by `merge_pack`, which only appends. Only the fields you send change; omit a field to leave it as is. **`owlKind`, when sent, replaces the whole mapping** — send `domain`/`range`/`instanceOf` again alongside it even where they are unchanged.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -934,7 +934,7 @@ Check one import source's facts against its pack's declared schema: every `(subj
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `pack` | string | yes | The pack id, e.g. |
+| `pack` | string | yes | The pack id, e.g. `dairy-demo`. |
 | `source` | string | yes | The import source to check, as `list_imports` reported it. |
 | `workspace` | string | no | Optional — narrow to one customer's own graphs. The slug `list_workspaces` returns. |
 

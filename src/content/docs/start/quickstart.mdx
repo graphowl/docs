@@ -96,39 +96,6 @@ A passcode works for seven days and for a limited number of people at a time; th
 Next: [From a database to an ontology](/guides/database-to-ontology/), the [dairy traceability cookbook](/cookbooks/dairy-traceability/), or [give an agent the same graph](/ai/mcp-overview/).
 
 </TabItem>
-   <TabItem label="Python">
-
-   ```python
-   import json, os, urllib.request, base64
-
-   auth = base64.b64encode(f"{os.environ['USER_NAME']}:{os.environ['PASS']}".encode()).decode()
-   query = "SELECT ?class (COUNT(?s) AS ?n) WHERE { GRAPH ?g { ?s a ?class } } GROUP BY ?class ORDER BY DESC(?n) LIMIT 5"
-   request = urllib.request.Request(
-       "https://demo.graphowl.app/sparql",
-       data=json.dumps({"query": query}).encode(),
-       headers={"Authorization": f"Basic {auth}", "Content-Type": "application/json"},
-   )
-   print(json.load(urllib.request.urlopen(request))["rows"])
-   ```
-
-   </TabItem>
-   </Tabs>
-
-   The answer lists the classes with the most instances (for the demo: cold-chain readings and quality tests at 46 each, then milk lots at 40, then batch lots at 25).
-
-4. **Ask it as a graph pattern.** The same data, asked as Cypher:
-
-   ```bash
-   curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/cypher \
-     -H "Content-Type: application/json" \
-     -d '{"query": "MATCH (n:MilkLot) RETURN count(n) AS lots"}'
-   ```
-
-</Steps>
-
-Next: [From a database to an ontology](/guides/database-to-ontology/), or [give an agent the same graph](/ai/mcp-overview/).
-
-</TabItem>
 <TabItem label="Run it yourself (early access)">
 
 The early-access container runs on your machine with Docker. It is provided **under the [evaluation licence](/project/licences/)** for 90 days, for evaluation only, not production.
