@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-label="From sources to answers: connect, model, review, then query, reason and validate, and serve">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2fafc"/><stop offset="1" stop-color="#e3f4f8"/></linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5cc7d8"/><stop offset="1" stop-color="#0498ab"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a6fb0"/><stop offset="1" stop-color="#0b1f3f"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a7bf0"/><stop offset="1" stop-color="#4a3fb5"/></linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d3a0"/><stop offset="1" stop-color="#0f9d78"/></linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb35c"/><stop offset="1" stop-color="#e0742a"/></linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#0b1f3f" flood-opacity="0.18"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0b1f3f" opacity="0.55"/></marker>
+    <style>
+      text{font-family:Outfit,Inter,"Segoe UI",system-ui,-apple-system,sans-serif}
+      .t{font-size:24px;font-weight:700;fill:#fff}
+      .s{font-size:15px;fill:#fff;opacity:.92}
+      .n{font-size:13px;font-weight:700;fill:#fff;opacity:.8;letter-spacing:.12em}
+      .h{font-size:30px;font-weight:700;fill:#0b1f3f}
+      .k{font-size:15px;fill:#4a5b64}
+    </style>
+  </defs>
+  <rect width="1200" height="360" rx="26" fill="url(#bg)"/>
+  <text x="48" y="58" class="h">From scattered data to answers you can trust</text>
+  <text x="48" y="86" class="k">Every step is reviewed, dated and traceable.</text>
+
+  <g filter="url(#sh)">
+    <rect x="40" y="130" width="196" height="170" rx="20" fill="url(#g1)"/>
+    <rect x="258" y="130" width="196" height="170" rx="20" fill="url(#g2)"/>
+    <rect x="476" y="130" width="196" height="170" rx="20" fill="url(#g3)"/>
+    <rect x="694" y="130" width="226" height="170" rx="20" fill="url(#g4)"/>
+    <rect x="942" y="130" width="218" height="170" rx="20" fill="url(#g5)"/>
+  </g>
+  <g stroke="#0b1f3f" stroke-opacity=".5" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M238 215 H254"/><path d="M456 215 H472"/><path d="M674 215 H690"/><path d="M922 215 H938"/>
+  </g>
+
+  <text x="62" y="166" class="n">01</text><text x="62" y="200" class="t">Connect</text>
+  <text x="62" y="232" class="s">Databases, files</text><text x="62" y="254" class="s">and systems, read</text><text x="62" y="276" class="s">with read-only roles</text>
+
+  <text x="280" y="166" class="n">02</text><text x="280" y="200" class="t">Model</text>
+  <text x="280" y="232" class="s">An ontology is</text><text x="280" y="254" class="s">proposed from what</text><text x="280" y="276" class="s">is already there</text>
+
+  <text x="498" y="166" class="n">03</text><text x="498" y="200" class="t">Review</text>
+  <text x="498" y="232" class="s">A person approves</text><text x="498" y="254" class="s">every class, relation</text><text x="498" y="276" class="s">and rule</text>
+
+  <text x="716" y="166" class="n">04</text><text x="716" y="200" class="t">Ask and check</text>
+  <text x="716" y="232" class="s">SPARQL and Cypher queries,</text><text x="716" y="254" class="s">OWL 2 RL reasoning, and</text><text x="716" y="276" class="s">constraint validation</text>
+
+  <text x="964" y="166" class="n">05</text><text x="964" y="200" class="t">Serve</text>
+  <text x="964" y="232" class="s">Console, HTTP API and</text><text x="964" y="254" class="s">MCP for AI agents,</text><text x="964" y="276" class="s">all on one engine</text>
+
+  <text x="48" y="334" class="k">Every fact keeps its history: nothing is deleted, only retracted, so any question can be asked as of an earlier moment.</text>
+</svg>
