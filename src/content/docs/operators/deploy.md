@@ -4,7 +4,7 @@ description: "Run GraphOWL with Docker: a Postgres database and the server."
 ---
 
 :::caution[Early access]
-The server image is provided under the [evaluation licence](/docs/project/licences/) for evaluation only, not production. It is a **private** container package: request access first.
+The server image is provided under the [evaluation licence](/project/licences/) for evaluation only, not production. It is a **private** container package: request access first.
 :::
 
 GraphOWL needs **PostgreSQL with the pgvector extension** and the server image. A ready-made compose file is in the hub: [`graphowl/graphowl/run`](https://github.com/graphowl/graphowl/tree/main/run).
@@ -61,12 +61,12 @@ volumes:
 Images are published for `linux/amd64` and `linux/arm64`.
 
 :::danger[Do not expose an unauthenticated server]
-With no identity provider configured, the server runs in **open mode** and announces it at startup. Bind it to localhost, or put authentication in front of it, before it is reachable by anyone else. See [Authentication](/docs/operators/authentication/).
+With no identity provider configured, the server runs in **open mode** and announces it at startup. Bind it to localhost, or put authentication in front of it, before it is reachable by anyone else. See [Authentication](/operators/authentication/).
 :::
 
 ## Next
 
-Load the [sample dairy database](https://github.com/graphowl/examples/tree/main/dairy-cooperative) and follow [From a database to an ontology](/docs/guides/database-to-ontology/).
+Load the [sample dairy database](https://github.com/graphowl/examples/tree/main/dairy-cooperative) and follow [From a database to an ontology](/guides/database-to-ontology/).
 
 ## Resources
 

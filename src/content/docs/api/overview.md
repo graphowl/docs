@@ -3,11 +3,11 @@ title: "API overview"
 description: "Authentication, errors, pagination and conventions for the GraphOWL HTTP API."
 ---
 
-The API is JSON over HTTP. The full description is [`openapi.json`](https://github.com/graphowl/graphowl/blob/main/api/openapi.json); the [reference](/docs/api/reference/) lists every route.
+The API is JSON over HTTP. The full description is [`openapi.json`](https://github.com/graphowl/graphowl/blob/main/api/openapi.json); the [reference](/api/reference/) lists every route.
 
 ## Authentication
 
-Send a bearer token: `Authorization: Bearer <token>`. Tokens are OIDC access tokens. See [Authentication](/docs/operators/authentication/).
+Send a bearer token: `Authorization: Bearer <token>`. Tokens are OIDC access tokens. See [Authentication](/operators/authentication/).
 
 ## Workspaces
 

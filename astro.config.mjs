@@ -3,8 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  site: 'https://graphowl.app',
-  base: '/docs',
+  site: 'https://docs.graphowl.app',
   integrations: [
     starlight({
       title: 'GraphOWL',

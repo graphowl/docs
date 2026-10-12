@@ -9,7 +9,7 @@ Context is only useful to an agent if it is **current**, **reviewed** and **attr
 
 ## What the tools cover
 
-The server offers 101 tools ([full reference](/docs/ai/mcp-tools/)), in these families:
+The server offers 101 tools ([full reference](/ai/mcp-tools/)), in these families:
 
 | Family | Examples | What an agent can do |
 |---|---|---|
@@ -22,7 +22,7 @@ The server offers 101 tools ([full reference](/docs/ai/mcp-tools/)), in these fa
 
 ## The rule that matters: agents propose, people decide
 
-Tools that change what the graph *claims* create **proposals**. A person approves them. An agent's grant says which capabilities it may use, and refusals are recorded. See [Agent patterns](/docs/ai/patterns/).
+Tools that change what the graph *claims* create **proposals**. A person approves them. An agent's grant says which capabilities it may use, and refusals are recorded. See [Agent patterns](/ai/patterns/).
 
 ## Session scope
 

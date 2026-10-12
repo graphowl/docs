@@ -3,7 +3,7 @@ title: "Query with Cypher"
 description: "Ask the graph pattern questions with a documented Cypher subset: labels, properties, relationships, filters and counts."
 ---
 
-`POST /cypher` takes the same body as [SPARQL](/docs/guides/query-sparql/): `{"query": "..."}`. Every example on this page was run against the [demo](/docs/start/quickstart/) (a synthetic dairy cooperative), and the results quoted are what it returned.
+`POST /cypher` takes the same body as [SPARQL](/guides/query-sparql/): `{"query": "..."}`. Every example on this page was run against the [demo](/start/quickstart/) (a synthetic dairy cooperative), and the results quoted are what it returned.
 
 ```bash
 curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/cypher \
@@ -49,7 +49,7 @@ RETURN t.qualityTestLotId AS lot, t.qualityTestValue AS value
 ORDER BY value DESC LIMIT 3
 ```
 
-One test is above the example limit used in the data (400,000): lot 5, at 455,500. This is the kind of question a validation rule then asks continuously; see [Concepts](/docs/start/concepts/).
+One test is above the example limit used in the data (400,000): lot 5, at 455,500. This is the kind of question a validation rule then asks continuously; see [Concepts](/start/concepts/).
 
 ## Follow a relationship
 
@@ -78,7 +78,7 @@ Quality tests per farm, reached through the milk lot each test measured: Farm El
 MATCH (a:QualityTest)-[r]->(b:MilkLot) RETURN a, b LIMIT 2
 ```
 
-Each node is returned as its identifier, for example `…#QualityTest/test_id=6` and `…#MilkLot/lot_id=1`. Use the identifier to look the node up, or to start a [traversal](/docs/ai/mcp-tools/#traverse).
+Each node is returned as its identifier, for example `…#QualityTest/test_id=6` and `…#MilkLot/lot_id=1`. Use the identifier to look the node up, or to start a [traversal](/ai/mcp-tools/#traverse).
 
 ## What is not supported yet
 
@@ -89,7 +89,7 @@ GraphOWL implements a **documented subset** of Cypher and makes no conformance c
  "errors": [{"field": "query", "detail": "`a function call that is not a supported aggregate` is in the subset's grammar but has no lowering yet"}]}
 ```
 
-Checked on the demo, this happens for `properties(n)` and for `type(r)` in a result or aggregate. Use a named relationship type instead of `type(r)`, or use [SPARQL](/docs/guides/query-sparql/) when a pattern needs more than the subset offers. Two things to know:
+Checked on the demo, this happens for `properties(n)` and for `type(r)` in a result or aggregate. Use a named relationship type instead of `type(r)`, or use [SPARQL](/guides/query-sparql/) when a pattern needs more than the subset offers. Two things to know:
 
 - `MATCH (n) RETURN count(n)` without a label returns `0` on the demo; name a label.
 - Results use the same typed-literal form as SPARQL (`"40"^^xsd:integer`); a client should read the datatype, not parse the text.

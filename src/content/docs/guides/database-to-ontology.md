@@ -6,7 +6,7 @@ description: "Scan a database, review the proposed ontology, load a sample, and 
 This is the walkthrough behind the demo. It uses a fictional dairy cooperative; the [sample database](https://github.com/graphowl/examples/tree/main/dairy-cooperative) is public.
 
 :::note
-This guide describes the console flow. Each step is also an API operation (see the [API reference](/docs/api/reference/)); the console is the easiest way to learn the shape.
+This guide describes the console flow. Each step is also an API operation (see the [API reference](/api/reference/)); the console is the easiest way to learn the shape.
 :::
 
 ## 1. Connect the source, read-only
@@ -33,7 +33,7 @@ WHERE { GRAPH ?g { ?s a ?class } }
 GROUP BY ?class ORDER BY DESC(?n)
 ```
 
-Then try [Cypher](/docs/guides/query-cypher/), search, or the [MCP server](/docs/ai/mcp-overview/) from an assistant.
+Then try [Cypher](/guides/query-cypher/), search, or the [MCP server](/ai/mcp-overview/) from an assistant.
 
 ## 6. Check coverage
 

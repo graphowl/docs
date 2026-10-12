@@ -5,8 +5,8 @@ from pathlib import Path
 dist = Path(__file__).resolve().parent.parent / "dist"
 missing = set()
 for page in dist.rglob("*.html"):
-    for href in re.findall(r'(?:href|src)="(/docs/[^"#?]*)', page.read_text()):
-        target = dist / href[len("/docs/"):]
+    for href in re.findall(r'(?:href|src)="(/[^"/][^"#?:]*|/)', page.read_text()):
+        target = dist / href.lstrip("/")
         if not (target.is_file() or (target / "index.html").is_file()):
             missing.add((str(page.relative_to(dist)), href))
 for page, href in sorted(missing):

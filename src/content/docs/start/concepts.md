@@ -5,7 +5,7 @@ description: "The handful of ideas that explain how GraphOWL behaves."
 
 ## Facts, and their history
 
-Everything in the graph is a **fact**: a statement about a subject, with where it came from and when it became true. Facts are never overwritten or deleted. A change **retracts** the old fact and adds a new one, so you can ask what was true at an earlier moment. See [Time travel](/docs/guides/time-travel/).
+Everything in the graph is a **fact**: a statement about a subject, with where it came from and when it became true. Facts are never overwritten or deleted. A change **retracts** the old fact and adds a new one, so you can ask what was true at an earlier moment. See [Time travel](/guides/time-travel/).
 
 ## Workspaces
 

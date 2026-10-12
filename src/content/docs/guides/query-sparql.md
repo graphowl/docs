@@ -27,8 +27,8 @@ A query is a body, not a URL. The `GET` form would put queries (which often cont
 
 ## Reasoning
 
-Queries can include what the reasoner derived; derived facts are marked as such in results of the graph and traversal routes. See [Concepts](/docs/start/concepts/).
+Queries can include what the reasoner derived; derived facts are marked as such in results of the graph and traversal routes. See [Concepts](/start/concepts/).
 
 ## Supported
 
-SPARQL 1.1 query. Federated query is not claimed. See [Standards](/docs/reference/standards/).
+SPARQL 1.1 query. Federated query is not claimed. See [Standards](/reference/standards/).

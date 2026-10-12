@@ -5,7 +5,7 @@ description: "A knowledge graph engine that stores, queries, reasons over and va
 
 GraphOWL turns the pieces of what an organisation knows (tables, files, rules, definitions) into **one graph that knows what things mean**, then lets people and AI agents ask it questions, check it against rules, and trust the answers.
 
-![From scattered data to answers you can trust](/docs/brand/pipeline.svg)
+![From scattered data to answers you can trust](/brand/pipeline.svg)
 
 ## What it does
 
@@ -21,12 +21,12 @@ GraphOWL turns the pieces of what an organisation knows (tables, files, rules, d
 
 ## One engine, three layers
 
-![One engine, three layers](/docs/brand/architecture.svg)
+![One engine, three layers](/brand/architecture.svg)
 
 It is **not** a metadata catalog with a graph bolted on, and it is not tied to one industry. A data catalog, a compliance model or a product domain is one *pack* of models and rules on the same engine.
 
 ## Where to go next
 
-- **See it work:** the [Quickstart](/docs/start/quickstart/).
-- **Understand it:** [Concepts in ten minutes](/docs/start/concepts/).
-- **Be honest with yourself about fit:** [Known limits](/docs/reference/limits/) and [Standards](/docs/reference/standards/).
+- **See it work:** the [Quickstart](/start/quickstart/).
+- **Understand it:** [Concepts in ten minutes](/start/concepts/).
+- **Be honest with yourself about fit:** [Known limits](/reference/limits/) and [Standards](/reference/standards/).

@@ -23,7 +23,7 @@ A working server answers with its capabilities (tools and resources) and its pro
 
 Any client that supports remote MCP servers over HTTP can use the endpoint: give it the URL and the credential its configuration asks for. Client configuration formats differ and change often, so follow your client's own documentation for adding a remote server.
 
-On the demo, the web gate asks for a username and password in addition; a client that cannot send those cannot reach the demo's MCP endpoint. Run your own instance for that case (see [Run it yourself](/docs/operators/deploy/)).
+On the demo, the web gate asks for a username and password in addition; a client that cannot send those cannot reach the demo's MCP endpoint. Run your own instance for that case (see [Run it yourself](/operators/deploy/)).
 
 ## What to try first
 

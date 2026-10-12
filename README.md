@@ -1,6 +1,6 @@
 # GraphOWL documentation
 
-Source of the documentation at <https://graphowl.app/docs>, built with [Astro Starlight](https://starlight.astro.build).
+Source of the documentation at <https://docs.graphowl.app>, built with [Astro Starlight](https://starlight.astro.build).
 
 - Hand-written pages are in `src/content/docs/`.
 - **Two pages are generated, never edited by hand:** `api/reference.md` (from `data/openapi.json`) and `ai/mcp-tools.md` (from `data/mcp-tools.json`). Run `python3 scripts/generate-reference.py`. The script fails if internal vocabulary survives.
@@ -9,7 +9,7 @@ Source of the documentation at <https://graphowl.app/docs>, built with [Astro St
 
 ```bash
 npm install
-npm run dev        # http://localhost:4321/docs/
+npm run dev        # http://localhost:4321/
 npm run build
 ```
 
