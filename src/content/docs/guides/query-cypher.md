@@ -6,7 +6,7 @@ description: "Ask the graph pattern questions with a documented Cypher subset: l
 `POST /cypher` takes the same body as [SPARQL](/guides/query-sparql/): `{"query": "..."}`. Every example on this page was run against the [demo](/start/quickstart/) (a synthetic dairy cooperative), and the results quoted are what it returned.
 
 ```bash
-curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/cypher \
+curl -X POST https://demo.graphowl.app/cypher -H "Authorization: Bearer $PASSCODE" \
   -H "Content-Type: application/json" \
   -d '{"query": "MATCH (n:MilkLot) RETURN count(n) AS lots"}'
 ```

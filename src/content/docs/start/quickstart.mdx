@@ -10,36 +10,92 @@ Pick how you want to run it.
 <Tabs>
 <TabItem label="Use the demo">
 
-The demo is a live server loaded with a **synthetic dairy cooperative**: farms, milk lots, quality tests, production batches and retail sales. It is password-protected while GraphOWL is in early access. Email [connect@graphowl.app](mailto:connect@graphowl.app) for a login.
+The demo is a live server loaded with a **synthetic dairy cooperative**: farms, milk lots, quality tests, production batches and retail sales. Access is by **passcode** while GraphOWL is in early access.
 
 <Steps>
 
-1. **Check it is up.**
+1. **Get a passcode.** Go to [demo.graphowl.app](https://demo.graphowl.app/__access) and book a 20-minute walkthrough. Straight after booking you are shown a passcode like `OWL-XXXX-XXXX`, valid for seven days. Copy it then: it is shown once. (No booking link yet? Email [connect@graphowl.app](mailto:connect@graphowl.app) and we will send one.)
 
-   ```bash
-   curl -u "$USER:$PASS" https://demo.graphowl.app/health
-   # {"status":"alive","version":"0.1.0"}
+2. **Open the console.** Go to [demo.graphowl.app](https://demo.graphowl.app), enter the passcode, and you are in the console with the Northfield Dairy Cooperative workspace.
+
+3. **Ask your first question in the console.** Open **Query** in the left menu, paste this SPARQL and run it. It counts the instances of each class. Imported facts live in named graphs, so the pattern sits inside `GRAPH ?g { ... }`.
+
+   ```sparql
+   SELECT ?class (COUNT(?s) AS ?n)
+   WHERE { GRAPH ?g { ?s a ?class } }
+   GROUP BY ?class ORDER BY DESC(?n)
    ```
 
-2. **See the workspace.** A workspace holds one team's sources, models and graph.
+   The answer lists the classes with the most instances: cold-chain readings and quality tests at 46 each, then milk lots at 40, then batch lots at 25. The same screen takes graph patterns (Cypher), such as `MATCH (n:MilkLot) RETURN count(n) AS lots`.
 
-   ```bash
-   curl -u "$USER:$PASS" https://demo.graphowl.app/workspaces
-   # [{"slug":"dairy-coop","displayName":"Northfield Dairy Cooperative", ...}]
-   ```
-
-3. **Ask a question.** Count the instances of each class. Imported facts live in named graphs, so the pattern sits inside `GRAPH ?g { ... }`.
+4. **Or call the API.** The passcode is your API key: send it as a bearer token.
 
    <Tabs>
    <TabItem label="curl">
 
    ```bash
-   curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/sparql \
-     -H "Content-Type: application/json" \
+   export PASSCODE=OWL-XXXX-XXXX
+
+   curl -H "Authorization: Bearer $PASSCODE" https://demo.graphowl.app/health
+   # {"status":"alive","version":"0.1.0"}
+
+   curl -X POST https://demo.graphowl.app/sparql \
+     -H "Authorization: Bearer $PASSCODE" -H "Content-Type: application/json" \
      -d '{"query": "SELECT ?class (COUNT(?s) AS ?n) WHERE { GRAPH ?g { ?s a ?class } } GROUP BY ?class ORDER BY DESC(?n) LIMIT 5"}'
    ```
 
    </TabItem>
+   <TabItem label="Python">
+
+   Install the client from its repository, then use the passcode as the key:
+
+   ```bash
+   pip install "git+https://github.com/graphowl/python-client"
+   ```
+
+   ```python
+   from graphowl import GraphOWL
+
+   owl = GraphOWL(url="https://demo.graphowl.app", api_key="OWL-XXXX-XXXX", workspace="dairy-coop")
+   rows = owl.query.sparql("""
+     SELECT ?class (COUNT(?s) AS ?n)
+     WHERE { GRAPH ?g { ?s a ?class } }
+     GROUP BY ?class ORDER BY DESC(?n) LIMIT 5""")
+   print(rows)
+   ```
+
+   </TabItem>
+   <TabItem label="TypeScript">
+
+   ```ts
+   const res = await fetch("https://demo.graphowl.app/sparql", {
+     method: "POST",
+     headers: { Authorization: "Bearer OWL-XXXX-XXXX", "Content-Type": "application/json" },
+     body: JSON.stringify({
+       query: "SELECT ?class (COUNT(?s) AS ?n) WHERE { GRAPH ?g { ?s a ?class } } GROUP BY ?class ORDER BY DESC(?n) LIMIT 5",
+     }),
+   });
+   const { rows } = await res.json();
+   ```
+
+   </TabItem>
+   </Tabs>
+
+5. **Ask it as a graph pattern.**
+
+   ```bash
+   curl -X POST https://demo.graphowl.app/cypher \
+     -H "Authorization: Bearer $PASSCODE" -H "Content-Type: application/json" \
+     -d '{"query": "MATCH (n:MilkLot) RETURN count(n) AS lots"}'
+   ```
+
+</Steps>
+
+A passcode works for seven days and for a limited number of people at a time; the demo says so if it is full. Lost yours? Email [connect@graphowl.app](mailto:connect@graphowl.app).
+
+Next: [From a database to an ontology](/guides/database-to-ontology/), the [dairy traceability cookbook](/cookbooks/dairy-traceability/), or [give an agent the same graph](/ai/mcp-overview/).
+
+</TabItem>
    <TabItem label="Python">
 
    ```python
