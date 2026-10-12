@@ -1,0 +1,87 @@
+---
+title: "Quickstart"
+description: "Run a query against GraphOWL in five minutes, on the demo or on your own machine."
+---
+
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+
+Pick how you want to run it.
+
+<Tabs>
+<TabItem label="Use the demo">
+
+The demo is a live server loaded with a **synthetic dairy cooperative**: farms, milk lots, quality tests, production batches and retail sales. It is password-protected while GraphOWL is in early access. Email [connect@graphowl.app](mailto:connect@graphowl.app) for a login.
+
+<Steps>
+
+1. **Check it is up.**
+
+   ```bash
+   curl -u "$USER:$PASS" https://demo.graphowl.app/health
+   # {"status":"alive","version":"0.1.0"}
+   ```
+
+2. **See the workspace.** A workspace holds one team's sources, models and graph.
+
+   ```bash
+   curl -u "$USER:$PASS" https://demo.graphowl.app/workspaces
+   # [{"slug":"dairy-coop","displayName":"Northfield Dairy Cooperative", ...}]
+   ```
+
+3. **Ask a question.** Count the instances of each class. Imported facts live in named graphs, so the pattern sits inside `GRAPH ?g { ... }`.
+
+   <Tabs>
+   <TabItem label="curl">
+
+   ```bash
+   curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/sparql \
+     -H "Content-Type: application/json" \
+     -d '{"query": "SELECT ?class (COUNT(?s) AS ?n) WHERE { GRAPH ?g { ?s a ?class } } GROUP BY ?class ORDER BY DESC(?n) LIMIT 5"}'
+   ```
+
+   </TabItem>
+   <TabItem label="Python">
+
+   ```python
+   import json, os, urllib.request, base64
+
+   auth = base64.b64encode(f"{os.environ['USER_NAME']}:{os.environ['PASS']}".encode()).decode()
+   query = "SELECT ?class (COUNT(?s) AS ?n) WHERE { GRAPH ?g { ?s a ?class } } GROUP BY ?class ORDER BY DESC(?n) LIMIT 5"
+   request = urllib.request.Request(
+       "https://demo.graphowl.app/sparql",
+       data=json.dumps({"query": query}).encode(),
+       headers={"Authorization": f"Basic {auth}", "Content-Type": "application/json"},
+   )
+   print(json.load(urllib.request.urlopen(request))["rows"])
+   ```
+
+   </TabItem>
+   </Tabs>
+
+   The answer lists the classes with the most instances (for the demo: cold-chain readings and quality tests at 46 each, then milk lots at 40, then batch lots at 25).
+
+4. **Ask it as a graph pattern.** The same data, asked as Cypher:
+
+   ```bash
+   curl -u "$USER:$PASS" -X POST https://demo.graphowl.app/cypher \
+     -H "Content-Type: application/json" \
+     -d '{"query": "MATCH (n:MilkLot) RETURN count(n) AS lots"}'
+   ```
+
+</Steps>
+
+Next: [From a database to an ontology](/docs/guides/database-to-ontology/), or [give an agent the same graph](/docs/ai/mcp-overview/).
+
+</TabItem>
+<TabItem label="Run it yourself (early access)">
+
+The early-access container runs on your machine with Docker. It is provided **under the [evaluation licence](/docs/project/licences/)** for 90 days, for evaluation only, not production.
+
+1. **Request access.** Email [connect@graphowl.app](mailto:connect@graphowl.app) with your name, organisation and what you want to evaluate. You will receive a registry token and the image name.
+2. **Start it.** See [Run it yourself](/docs/operators/deploy/) for the compose file: a Postgres database with pgvector, plus the GraphOWL server.
+3. **Check it.** `curl http://localhost:8080/health`, then follow the steps on the demo tab against `http://localhost:8080`.
+
+Until you have a token, use the demo tab: the steps are the same.
+
+</TabItem>
+</Tabs>

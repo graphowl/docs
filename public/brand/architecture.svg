@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-label="GraphOWL architecture: sources feed domain models, which sit on the engine, which serves people, agents and code">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2fafc"/><stop offset="1" stop-color="#e3f4f8"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5cc7d8"/><stop offset="1" stop-color="#0498ab"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a7bf0"/><stop offset="1" stop-color="#4a3fb5"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a6fb0"/><stop offset="1" stop-color="#0b1f3f"/></linearGradient>
+    <linearGradient id="d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d3a0"/><stop offset="1" stop-color="#0f9d78"/></linearGradient>
+    <linearGradient id="e" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb35c"/><stop offset="1" stop-color="#e0742a"/></linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0b1f3f" flood-opacity="0.16"/></filter>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0b1f3f" opacity="0.55"/></marker>
+    <style>
+      text{font-family:Outfit,Inter,"Segoe UI",system-ui,-apple-system,sans-serif}
+      .h{font-size:30px;font-weight:700;fill:#0b1f3f}
+      .k{font-size:15px;fill:#4a5b64}
+      .lay{font-size:13px;font-weight:700;letter-spacing:.14em;fill:#0b1f3f;opacity:.6}
+      .t{font-size:20px;font-weight:700;fill:#fff}
+      .s{font-size:14px;fill:#fff;opacity:.93}
+    </style>
+  </defs>
+  <rect width="1200" height="560" rx="26" fill="url(#bg)"/>
+  <text x="48" y="58" class="h">One engine, three layers</text>
+  <text x="48" y="86" class="k">The engine is the foundation. Models and access sit on top of it.</text>
+
+  <text x="48" y="130" class="lay">PEOPLE, AGENTS AND CODE</text>
+  <g filter="url(#sh)">
+    <rect x="48" y="142" width="352" height="86" rx="18" fill="url(#e)"/>
+    <rect x="424" y="142" width="352" height="86" rx="18" fill="url(#e)"/>
+    <rect x="800" y="142" width="352" height="86" rx="18" fill="url(#e)"/>
+  </g>
+  <text x="72" y="178" class="t">Console</text><text x="72" y="204" class="s">Explore, review and govern</text>
+  <text x="448" y="178" class="t">MCP for AI agents</text><text x="448" y="204" class="s">Context an agent can trace</text>
+  <text x="824" y="178" class="t">HTTP API and SDKs</text><text x="824" y="204" class="s">OpenAPI, Python, TypeScript</text>
+
+  <text x="48" y="266" class="lay">DOMAIN MODELS</text>
+  <g filter="url(#sh)">
+    <rect x="48" y="278" width="1104" height="100" rx="18" fill="url(#b)"/>
+  </g>
+  <g>
+    <rect x="72" y="296" width="196" height="64" rx="12" fill="#fff" fill-opacity=".18"/>
+    <rect x="284" y="296" width="196" height="64" rx="12" fill="#fff" fill-opacity=".18"/>
+    <rect x="496" y="296" width="196" height="64" rx="12" fill="#fff" fill-opacity=".18"/>
+    <rect x="708" y="296" width="196" height="64" rx="12" fill="#fff" fill-opacity=".18"/>
+    <rect x="920" y="296" width="208" height="64" rx="12" fill="#fff" fill-opacity=".18"/>
+  </g>
+  <text x="88" y="334" class="t" style="font-size:18px">Ontologies</text>
+  <text x="300" y="334" class="t" style="font-size:18px">Glossaries</text>
+  <text x="512" y="334" class="t" style="font-size:18px">Rules</text>
+  <text x="724" y="334" class="t" style="font-size:18px">Expectations</text>
+  <text x="936" y="334" class="t" style="font-size:18px">Review before effect</text>
+
+  <text x="48" y="416" class="lay">ENGINE</text>
+  <g filter="url(#sh)">
+    <rect x="48" y="428" width="1104" height="100" rx="18" fill="url(#c)"/>
+  </g>
+  <g>
+    <rect x="72" y="446" width="244" height="64" rx="12" fill="url(#d)"/>
+    <rect x="332" y="446" width="244" height="64" rx="12" fill="url(#a)"/>
+    <rect x="592" y="446" width="244" height="64" rx="12" fill="url(#b)"/>
+    <rect x="852" y="446" width="276" height="64" rx="12" fill="url(#e)"/>
+  </g>
+  <text x="88" y="474" class="t" style="font-size:17px">Triple store</text><text x="88" y="496" class="s">with full history</text>
+  <text x="348" y="474" class="t" style="font-size:17px">Query</text><text x="348" y="496" class="s">SPARQL, Cypher subset, search</text>
+  <text x="608" y="474" class="t" style="font-size:17px">Reasoning</text><text x="608" y="496" class="s">OWL 2 RL, marked as derived</text>
+  <text x="868" y="474" class="t" style="font-size:17px">Validation</text><text x="868" y="496" class="s">constraints and expectations</text>
+
+  <g stroke="#0b1f3f" stroke-opacity=".5" stroke-width="3" fill="none" marker-end="url(#ar)">
+    <path d="M600 426 V384"/><path d="M600 276 V234"/>
+  </g>
+</svg>

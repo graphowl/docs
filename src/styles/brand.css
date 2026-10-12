@@ -1,0 +1,14 @@
+:root {
+  --sl-color-accent-low: #0b3b46;
+  --sl-color-accent: #0498ab;
+  --sl-color-accent-high: #5cc7d8;
+  --sl-font: 'Outfit', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+:root[data-theme='light'] {
+  --sl-color-accent-low: #d7f0f4;
+  --sl-color-accent: #0498ab;
+  --sl-color-accent-high: #0b5b69;
+  --sl-color-bg-nav: #ffffff;
+}
+.hero img { border-radius: 14px; }
+.sl-markdown-content img { border-radius: 12px; }

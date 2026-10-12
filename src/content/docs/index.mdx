@@ -1,0 +1,37 @@
+---
+title: "GraphOWL documentation"
+description: "Documentation for GraphOWL, the knowledge graph engine."
+template: splash
+hero:
+  tagline: Model, query, reason over and validate connected knowledge. Start with the demo in five minutes.
+  image:
+    file: ../../../public/brand/owl.png
+  actions:
+    - text: Quickstart
+      link: /docs/start/quickstart/
+      icon: right-arrow
+    - text: What is GraphOWL
+      link: /docs/start/what-is-graphowl/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Start here" icon="rocket">
+    Run a query against the live demo in five minutes, then read the [ten-minute concepts](/docs/start/concepts/).
+  </Card>
+  <Card title="Build with the API" icon="puzzle">
+    One [HTTP API](/docs/api/overview/), [client libraries](/docs/sdks/), and SPARQL and Cypher [guides](/docs/guides/query-sparql/).
+  </Card>
+  <Card title="Give an agent context" icon="star">
+    A built-in [MCP server](/docs/ai/mcp-overview/) with [101 tools](/docs/ai/mcp-tools/) an assistant can call, every answer traceable.
+  </Card>
+  <Card title="Run it yourself" icon="setting">
+    The [early-access container](/docs/operators/deploy/): Postgres and one server, started with `docker compose`.
+  </Card>
+</CardGrid>
+
+![The GraphOWL console on a synthetic dairy cooperative](/docs/brand/console-overview.jpg)
+
+GraphOWL is in **early access**. Pages here are checked against the running product; where something is not built yet, the page says so. See [known limits](/docs/reference/limits/).
