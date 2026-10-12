@@ -10,13 +10,13 @@ Pick how you want to run it.
 <Tabs>
 <TabItem label="Use the demo">
 
-The demo is a live server loaded with a **synthetic dairy cooperative**: farms, milk lots, quality tests, production batches and retail sales. Access is by **passcode** while GraphOWL is in early access.
+The demo is a live server loaded with a **synthetic dairy cooperative**: farms, milk lots, quality tests, production batches and retail sales. Access is by **passcode**, from a booked time slot.
 
 <Steps>
 
-1. **Get a passcode.** Go to [demo.graphowl.app](https://demo.graphowl.app/__access) and book a 20-minute walkthrough. Straight after booking you are shown a passcode like `OWL-XXXX-XXXX`, valid for seven days. Copy it then: it is shown once. (No booking link yet? Email [connect@graphowl.app](mailto:connect@graphowl.app) and we will send one.)
+1. **Book a time.** Go to [demo.graphowl.app](https://demo.graphowl.app/__access/book) and choose **20 minutes of hands-on access** (the demo is yours alone for that slot). Pick a day, then a time from the list, and enter your name and email. You are shown a passcode like `OWL-XXXX-XXXX` straight away: copy it, it is shown once. Want a guided tour instead? Choose the **30-minute walkthrough call** with the author; no passcode is needed for that.
 
-2. **Open the console.** Go to [demo.graphowl.app](https://demo.graphowl.app), enter the passcode, and you are in the console with the Northfield Dairy Cooperative workspace.
+2. **Open the console.** When your slot starts, go to [demo.graphowl.app](https://demo.graphowl.app), enter the passcode, and you are in the console with the Northfield Dairy Cooperative workspace.
 
 3. **Ask your first question in the console.** Open **Query** in the left menu, paste this SPARQL and run it. It counts the instances of each class. Imported facts live in named graphs, so the pattern sits inside `GRAPH ?g { ... }`.
 
@@ -26,7 +26,7 @@ The demo is a live server loaded with a **synthetic dairy cooperative**: farms, 
    GROUP BY ?class ORDER BY DESC(?n)
    ```
 
-   The answer lists the classes with the most instances: cold-chain readings and quality tests at 46 each, then milk lots at 40, then batch lots at 25. The same screen takes graph patterns (Cypher), such as `MATCH (n:MilkLot) RETURN count(n) AS lots`.
+   The answer lists the classes with the most instances: cold-chain readings and quality tests at 46 each, then milk lots at 40, then batch lots at 25. The same screen takes graph patterns (openCypher), such as `MATCH (n:MilkLot) RETURN count(n) AS lots`.
 
 4. **Or call the API.** The passcode is your API key: send it as a bearer token.
 
@@ -91,7 +91,7 @@ The demo is a live server loaded with a **synthetic dairy cooperative**: farms, 
 
 </Steps>
 
-A passcode works for seven days and for a limited number of people at a time; the demo says so if it is full. Lost yours? Email [connect@graphowl.app](mailto:connect@graphowl.app).
+A passcode works **only during your booked slot**. When the 20 minutes end you are signed out, and the demo is restored to its original data, so anything you created is erased. Lost your passcode? Email [connect@graphowl.app](mailto:connect@graphowl.app).
 
 Next: [From a database to an ontology](/guides/database-to-ontology/), the [dairy traceability cookbook](/cookbooks/dairy-traceability/), or [give an agent the same graph](/ai/mcp-overview/).
 

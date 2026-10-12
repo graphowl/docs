@@ -35,7 +35,7 @@ WHERE { GRAPH ?g { ?s a ?class } }
 GROUP BY ?class ORDER BY DESC(?n)
 ```
 
-Then try [Cypher](/guides/query-cypher/), search, or the [MCP server](/ai/mcp-overview/) from an assistant.
+Then try [openCypher](/guides/query-cypher/), search, or the [MCP server](/ai/mcp-overview/) from an assistant.
 
 ## 6. Check coverage
 

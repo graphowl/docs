@@ -10,8 +10,8 @@ GraphOWL ships as a container image that needs **PostgreSQL with pgvector**. Thi
 | Platform | Status | Notes |
 |---|---|---|
 | **Linux, amd64** | Tested | The hosted demo runs on an Ubuntu amd64 virtual machine with 1 GB of memory and swap, behind a reverse proxy |
-| **macOS, Apple silicon (Docker Desktop)** | Tested, with caveats | The amd64 image started and served the console, `/health` and `/sparql` under emulation against a fresh database. An arm64 image has been built but not yet run |
-| **Linux, arm64** | Expected | An arm64 image builds; not yet run on an arm64 host |
+| **macOS, Apple silicon (Docker Desktop)** | Tested | The native arm64 image was pulled from the registry and run with the published compose file against a fresh database: the console, `/health`, `/sparql` and the MCP `initialize` all answered |
+| **Linux, arm64** | Expected | The same arm64 image runs inside Docker Desktop's Linux VM; not yet run on a bare arm64 Linux host |
 | **macOS, Intel (Docker Desktop)** | Expected | Uses the amd64 image natively |
 | **Windows (Docker Desktop with WSL 2)** | Not tested | A standard container; expect it to work |
 | **Kubernetes** | Not tested | The compose file maps to a Deployment and a StatefulSet or managed PostgreSQL; there is no Helm chart yet |

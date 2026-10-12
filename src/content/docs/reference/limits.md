@@ -7,7 +7,8 @@ Early access means gaps. This page lists the ones we know about so you do not ha
 
 | Area | Limit |
 |---|---|
-| **Cypher** | A documented subset. Some functions are parsed but not yet supported (`type(r)`, `properties(n)`); they return a `400` naming the construct. A query with no label (`MATCH (n) RETURN count(n)`) returns `0`. No conformance claim to openCypher or ISO GQL. |
+| **openCypher** | A documented subset. Some functions are parsed but not yet supported (`type(r)`, `properties(n)`); they return a `400` naming the construct. A query with no label (`MATCH (n) RETURN count(n)`) returns `0`. No conformance claim to openCypher or ISO GQL. |
+| **Query time** | A query that runs past its time budget (20 seconds by default) is stopped with a `400`; it is never answered partially. An unselective pattern, such as several unconstrained patterns that share no variable, can multiply into billions of rows, so name the classes and relationships a query should follow. |
 | **SPARQL** | SPARQL 1.1 query. No federated query, no SPARQL 1.2. |
 | **SHACL** | Core constraints and SPARQL constraints, with stated gaps; no reusable SPARQL constraint components, no SHACL rules. See [Standards](/reference/standards/). |
 | **RDF formats** | Import: Turtle, N-Triples, JSON-LD. Export: Turtle, JSON-LD, N-Triples, N-Quads. No RDF/XML or TriG through the API. |

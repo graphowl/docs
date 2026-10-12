@@ -5,7 +5,7 @@ description: "Ask a question as the graph stood at an earlier moment."
 
 ![Every fact keeps its history](/brand/time-travel.svg)
 
-Add `asOf` (an RFC 3339 timestamp) to a SPARQL or Cypher request:
+Add `asOf` (an RFC 3339 timestamp) to a SPARQL or openCypher request:
 
 ```bash
 curl -X POST "$URL/sparql" \

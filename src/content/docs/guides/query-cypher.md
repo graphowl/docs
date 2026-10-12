@@ -1,6 +1,6 @@
 ---
-title: "Query with Cypher"
-description: "Ask the graph pattern questions with a documented Cypher subset: labels, properties, relationships, filters and counts."
+title: "Query with openCypher"
+description: "Ask the graph pattern questions with a documented openCypher subset: labels, properties, relationships, filters and counts."
 ---
 
 `POST /cypher` takes the same body as [SPARQL](/guides/query-sparql/): `{"query": "..."}`. Every example on this page was run against the [demo](/start/quickstart/) (a synthetic dairy cooperative), and the results quoted are what it returned.
@@ -11,9 +11,15 @@ curl -X POST https://demo.graphowl.app/cypher -H "Authorization: Bearer $PASSCOD
   -d '{"query": "MATCH (n:MilkLot) RETURN count(n) AS lots"}'
 ```
 
-## How the model maps to Cypher
+## What language this is
 
-| In Cypher | In GraphOWL |
+The graph-pattern language here is **openCypher**: the open specification of the pattern language that property-graph databases popularised. openCypher is published as an open specification (with an Apache-2.0 reference implementation), and it is a main influence on the ISO standard graph query language, **GQL (ISO/IEC 39075:2024)**. GraphOWL accepts a documented **subset** of openCypher, plus a few GQL forms (`GRAPH name MATCH`, quantified relationships such as `->{m,n}`, and `IN UNNEST(x)`), and refuses anything else by name. It claims no conformance to either specification. The HTTP route is `POST /cypher`, named for the language's common name.
+
+*Cypher is a registered trademark of Neo4j, Inc. GraphOWL is not affiliated with or endorsed by Neo4j, Inc. It accepts a subset of openCypher, the open specification of that language, and a few forms of ISO/IEC 39075 GQL.*
+
+## How the model maps to openCypher
+
+| In openCypher | In GraphOWL |
 |---|---|
 | a **label** (`:MilkLot`) | a class of the workspace's ontology |
 | a **property** (`n.milkLotLitres`) | a data property of that class; names are the ontology's own, here the class name followed by the column |
@@ -82,7 +88,7 @@ Each node is returned as its identifier, for example `…#QualityTest/test_id=6`
 
 ## What is not supported yet
 
-GraphOWL implements a **documented subset** of Cypher and makes no conformance claim to openCypher or ISO GQL. Something outside the subset is refused with a `400` that names the construct, rather than answered wrongly:
+GraphOWL implements a **documented subset** of openCypher and makes no conformance claim to openCypher or ISO GQL. Something outside the subset is refused with a `400` that names the construct, rather than answered wrongly:
 
 ```json
 {"status": 400, "title": "Validation failed",

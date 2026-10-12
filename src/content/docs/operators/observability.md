@@ -32,6 +32,6 @@ At startup the server logs how it is configured, including whether authenticatio
 ## What to watch
 
 - `5xx` rate per route.
-- `429` rate: sustained refusals mean the admission limits are too low, or something is hammering the server.
+- `503` rate: sustained refusals mean the admission limits are too low, or something is hammering the server. `429` is a single sender exceeding its own rate.
 - Request duration for `/sparql` and `/cypher`.
 - Disk and connections on the PostgreSQL side.

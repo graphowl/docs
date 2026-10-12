@@ -13,7 +13,7 @@ GraphOWL turns the pieces of what an organisation knows (tables, files, rules, d
 |---|---|
 | **Connect** | Read a source database through a read-only role, load files, or query a source in place as a virtual graph. |
 | **Model** | Propose an ontology from what is already there. A person reviews every class, relation and rule before it takes effect. |
-| **Query** | SPARQL, a documented Cypher subset, graph traversal, keyword and semantic search, over the same facts. |
+| **Query** | SPARQL, a documented openCypher subset, graph traversal, keyword and semantic search, over the same facts. |
 | **Reason** | OWL 2 RL reasoning derives what follows from the model, and marks it as derived. |
 | **Validate** | SHACL-style constraints and quality expectations check data against the model. |
 | **Remember** | Every fact keeps its history. Nothing is deleted, only retracted. |
@@ -42,7 +42,7 @@ It is **not** a metadata catalog with a graph bolted on, and it is not tied to o
 
 - **A system of record for transactions.** GraphOWL reads your sources; it does not replace them. Source databases are read through read-only roles.
 - **Whole-graph analytics at very large scale.** Traversal is bounded by design; heavy graph algorithms are not the focus. No benchmark figures are published yet.
-- **A drop-in replacement for another graph database.** The query surface is SPARQL 1.1 and a documented Cypher subset, not a clone of any product's dialect. See [known limits](/reference/limits/).
+- **A drop-in replacement for another graph database.** The query surface is SPARQL 1.1 and a documented openCypher subset, not a clone of any product's dialect. See [known limits](/reference/limits/).
 
 ## Where to go next
 

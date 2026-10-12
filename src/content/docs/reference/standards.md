@@ -25,7 +25,7 @@ Anything not re-checked on a given date keeps its earlier date, so a stale row s
 | SHACL | SHACL (Core and SPARQL constraints, 20 Jul 2017) is a **Recommendation**; SHACL 1.2 is a Working Draft (Aug 2026) | **Implemented with stated gaps** — see below. Validates; does not yet derive (SHACL rules are not implemented). |
 | OWL 2 RL | Profile of OWL 2, a Recommendation since 2012 | **Implemented** as a reasoner: what follows from the model's axioms (subclass, transitivity, inverse and so on) is derived and marked as derived. |
 | SKOS | Recommendation | Vocabularies can be imported as SKOS. No conformance claim beyond import. |
-| Cypher / GQL | openCypher; ISO/IEC 39075 (GQL) | A documented subset can be queried, and written to a workspace's own graph. **No conformance claim** to openCypher or ISO GQL. |
+| openCypher / GQL | openCypher (open specification); ISO/IEC 39075 (GQL) | A documented subset can be queried, and written to a workspace's own graph. **No conformance claim** to openCypher or ISO GQL. |
 
 ## The status of the specifications
 
@@ -63,3 +63,8 @@ GraphOWL's reified relationship node is structurally an RDF 1.2 reifier, so alig
 ## How to read "implemented"
 
 It means the capability exists and is reachable in the running product. It does not mean it has been certified against the W3C test suites. If you need that assurance for a specific feature, ask, and we will tell you plainly whether it has been done.
+
+
+## Names and trademarks
+
+Cypher is a registered trademark of Neo4j, Inc. GraphOWL is not affiliated with or endorsed by Neo4j, Inc. It accepts a subset of **openCypher**, the open specification of that language, and a few forms of ISO/IEC 39075 GQL.

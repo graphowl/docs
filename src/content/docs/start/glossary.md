@@ -26,4 +26,4 @@ description: "Plain definitions of the terms used across the documentation."
 | **MCP** | Model Context Protocol: how an AI assistant calls tools on a server. |
 | **Grant** | The list of capabilities an agent may use. |
 | **Open mode** | A server with no identity provider configured: it accepts every request. For development only. |
-| **SPARQL / Cypher / SHACL / OWL 2 RL** | W3C and graph-community standards for querying, constraining and reasoning. See [Standards](/reference/standards/). |
+| **SPARQL / openCypher / SHACL / OWL 2 RL** | W3C and graph-community standards for querying, constraining and reasoning. See [Standards](/reference/standards/). |

@@ -16,10 +16,13 @@ No. A catalog is one use. The engine stores and reasons over any connected knowl
 In GraphOWL's own store (PostgreSQL). Source databases are read through read-only roles and never written to. The server sends nothing to us.
 
 ## Do I need to know RDF or OWL?
-No to start. The console and the guides work with classes, properties and relations. SPARQL is there when you want exact questions, and [Cypher](/guides/query-cypher/) for graph patterns.
+No to start. The console and the guides work with classes, properties and relations. SPARQL is there when you want exact questions, and [openCypher](/guides/query-cypher/) for graph patterns.
 
 ## How do I get data in?
 Connect a source database and let GraphOWL propose an ontology ([guide](/guides/database-to-ontology/)), push entities with the [ingestion API](/guides/load-data/), or import RDF files.
+
+## Is it Cypher, openCypher or GQL?
+openCypher, as a documented subset, with a few GQL forms. "Cypher" is a registered trademark of Neo4j, Inc.; **openCypher** is the open specification of the language, and GQL (ISO/IEC 39075:2024) is the ISO standard it influenced. GraphOWL is not affiliated with Neo4j, Inc. and claims no conformance to either specification. See [Query with openCypher](/guides/query-cypher/).
 
 ## Can an AI agent use it?
 Yes. An [MCP server](/ai/mcp-overview/) exposes the graph, and a grant limits what an agent may do. Agents propose; people approve.

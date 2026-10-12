@@ -11,7 +11,7 @@ Your data is not locked in. Facts export in W3C formats and as property-graph fi
 | `GET /graph/export/jsonl` | JSON Lines |
 | `GET /graph/export/json-graph` | JSON Graph |
 | `GET /graph/export/graphml` | GraphML |
-| `GET /graph/export/cypher` | Cypher statements |
+| `GET /graph/export/cypher` | openCypher statements |
 | `GET /graph/export/bulk-csv` | CSV bulk-import files |
 | `GET /graph/export/preview` | what an export would contain, without writing it |
 

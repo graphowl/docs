@@ -41,13 +41,14 @@ With neither `OIDC_ISSUER` nor `GRAPH_OWL_JWT_SECRET`, the server runs in **open
 
 | Variable | What it does |
 |---|---|
-| `GRAPH_OWL_ADMISSION_QUERY_PERMITS` | how many queries may run at once; further requests wait or are refused with `429` |
+| `GRAPH_OWL_QUERY_TIMEOUT_MS` | the longest one query may run before it is stopped (20,000 by default). A stopped query is a `400` error, never a partial answer |
+| `GRAPH_OWL_ADMISSION_QUERY_PERMITS` | how many queries may run at once; further requests are refused with `503` and a retry hint |
 | `GRAPH_OWL_ADMISSION_INGESTION_PERMITS` | the same for ingestion |
-| `GRAPH_OWL_ADMISSION_RETRY_AFTER_SECONDS` | the retry hint sent with a `429` |
+| `GRAPH_OWL_ADMISSION_RETRY_AFTER_SECONDS` | the retry hint sent with a `503` |
 | `GRAPH_OWL_BUDGET` | an overall memory budget for the server's caches |
 | `GRAPH_OWL_BUDGET_*_MB` | per-area memory budgets (analytics, authorization, query plans, reasoning, shapes, vectors) |
 
-A value the server cannot use is refused at startup with a message naming the variable, rather than silently ignored.
+`GRAPH_OWL_ADMISSION_RETRY_AFTER_SECONDS` is the hint sent with that `503`. A value the server cannot use is refused at startup with a message naming the variable, rather than silently ignored.
 
 ## Federation, webhooks and sources
 

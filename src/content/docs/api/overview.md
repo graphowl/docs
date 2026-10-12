@@ -44,7 +44,7 @@ Writes that can be retried take an `Idempotency-Key` header: the ingestion route
 
 ## Busy servers
 
-An operator can limit concurrent queries and ingestion (see [Configuration](/operators/configuration/)). A request refused for load answers `429` with a retry hint: wait and retry with backoff.
+An operator can limit concurrent queries and ingestion (see [Configuration](/operators/configuration/)). A request refused for load answers `503` (`overloaded`) with a `Retry-After` hint: wait and resend. Individual senders and agents that exceed their own rate get `429`. A query that runs past its time budget (20 seconds by default) is stopped with a `400`.
 
 ## Content types
 

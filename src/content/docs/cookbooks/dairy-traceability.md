@@ -64,5 +64,5 @@ With the [MCP server](/ai/mcp-overview/), the same question is `query_graph` or 
 - The graph can answer the same question over history: add `asOf` to ask what you would have told the retailers last week ([Time travel](/guides/time-travel/)).
 
 :::note
-A long multi-hop **Cypher** pattern that mixed an incoming relationship with several hops ran for minutes on the demo's small machine, while the SPARQL form above answered promptly. Prefer SPARQL for long paths until [known limits](/reference/limits/) says otherwise.
+A long multi-hop **openCypher** pattern that mixes an incoming relationship with several hops can be expensive. The server stops any query at its time budget (20 seconds by default) and says so; the SPARQL form above answers promptly. Prefer SPARQL for long paths.
 :::
