@@ -3,13 +3,15 @@ title: "MCP overview"
 description: "GraphOWL speaks the Model Context Protocol, so an AI assistant can use the graph as trustworthy context."
 ---
 
+![An assistant, with context it can trust](/brand/mcp-flow.svg)
+
 GraphOWL includes an **MCP server** at `POST /mcp`. An assistant connects to it and can look up what a term means, follow relationships, run queries, propose changes and record what it learned, with every answer traceable to the facts and rules behind it.
 
 Context is only useful to an agent if it is **current**, **reviewed** and **attributable**. Those are properties of the engine, not of the prompt.
 
 ## What the tools cover
 
-The server offers 101 tools ([full reference](/ai/mcp-tools/)), in these families:
+The server offers 101 tools ([full reference](/ai/mcp-tools/); [by family](/ai/tool-families/)), in these families:
 
 | Family | Examples | What an agent can do |
 |---|---|---|
@@ -27,3 +29,7 @@ Tools that change what the graph *claims* create **proposals**. A person approve
 ## Session scope
 
 A session can be scoped to one workspace, so an assistant working for one team cannot read another's data. Tools that take a `workspace` argument say so; in a scoped session it is required.
+
+## Transport
+
+JSON-RPC 2.0 over HTTP at `POST /mcp`; the server reports its capabilities (tools and resources) on `initialize`. See [Connect a client](/ai/connect-a-client/).

@@ -68,13 +68,48 @@ def mcp_tools():
     (DOCS / "ai/mcp-tools.md").write_text("\n".join(out))
 
 
+FAMILIES = [
+    ("Remember", r"^(record_|recall_)"),
+    ("Query", r"^(query_|rewrite_query|check_rewrite|run_pack_query|declare_pack_query|list_pack_queries)"),
+    ("Reason and validate", r"^(run_|explain|check_|validate_|model_health|decide_finding|decide_model_health|list_findings|list_model_health|calculate_risk|preview_expectations|list_expectations|write_pack_expectations|create_quality_test|reconcile)"),
+    ("Model (propose and decide)", r"^(propose_|decide_|update_term|deprecate_term|create_glossary_term|review_proposals|assign_|list_axioms|list_alignments|list_term_|align_coverage|model_coverage|model_diff|suggest_owl_model|get_ontology_model|generate_model_graph|extraction_schema|sync_definitions|link_lineage)"),
+    ("Packs and sources", r"(pack|^register_source|^load_source_sample|^import_data|^list_imports|^replay_import|uploaded_file|virtual_graph|^list_users|^resolve_)"),
+    ("Find and read", r"^(search_|get_|find_|similar_|traverse|analytics|analyze_impact|list_|pipeline_status|similar)"),
+]
+
+
+def tool_families():
+    tools = sorted(json.loads((ROOT / "data/mcp-tools.json").read_text())["result"]["tools"], key=lambda t: t["name"])
+    groups = {name: [] for name, _ in FAMILIES}
+    groups["Other"] = []
+    for t in tools:
+        for name, pattern in FAMILIES:
+            if re.search(pattern, t["name"]):
+                groups[name].append(t)
+                break
+        else:
+            groups["Other"].append(t)
+    out = ["---", "title: MCP tools by family", "description: The MCP tools grouped by what an agent uses them for.", "---", "",
+           f"The {len(tools)} tools, grouped by purpose. The first sentence of each description is shown; the [full reference](/ai/mcp-tools/) has every parameter.", ""]
+    for name, members in groups.items():
+        if not members:
+            continue
+        out += [f"## {name}", "", f"{len(members)} tools.", "", "| Tool | What it does |", "|---|---|"]
+        for t in members:
+            first = re.split(r"(?<=[.!?])\s+", clean(t.get("description", "")), maxsplit=1)[0]
+            out.append(f"| [`{t['name']}`](/ai/mcp-tools/#{t['name'].replace('_', '_')}) | {cell(first)} |")
+        out.append("")
+    (DOCS / "ai/tool-families.md").write_text("\n".join(out))
+
+
 def main():
     api_reference()
     mcp_tools()
-    leaks = [str(p) for p in (DOCS / "api/reference.md", DOCS / "ai/mcp-tools.md") if INTERNAL.search(p.read_text())]
+    tool_families()
+    leaks = [str(p) for p in (DOCS / "api/reference.md", DOCS / "ai/mcp-tools.md", DOCS / "ai/tool-families.md") if INTERNAL.search(p.read_text())]
     if leaks:
         sys.exit(f"internal vocabulary survived in: {leaks}")
-    print("generated api/reference.md and ai/mcp-tools.md")
+    print("generated api/reference.md, ai/mcp-tools.md and ai/tool-families.md")
 
 
 main()

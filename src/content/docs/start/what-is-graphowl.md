@@ -25,8 +25,28 @@ GraphOWL turns the pieces of what an organisation knows (tables, files, rules, d
 
 It is **not** a metadata catalog with a graph bolted on, and it is not tied to one industry. A data catalog, a compliance model or a product domain is one *pack* of models and rules on the same engine.
 
+## Many ways in
+
+![The console, HTTP API, MCP server and client libraries all reach the same engine](/brand/api-surface.svg)
+
+## Who it is for
+
+| You are | GraphOWL gives you |
+|---|---|
+| **A data or platform team** | one graph over your databases, with definitions, owners and lineage as facts you can query |
+| **A domain modeller or analyst** | an ontology proposed from your data that you review, then rules and constraints that check it |
+| **An AI-agent builder** | reviewed, dated, traceable context behind an MCP server, with grants that limit what an agent may do |
+| **An evaluator** | a live demo and a clear list of what is and is not built |
+
+## When it is not the right tool
+
+- **A system of record for transactions.** GraphOWL reads your sources; it does not replace them. Source databases are read through read-only roles.
+- **Whole-graph analytics at very large scale.** Traversal is bounded by design; heavy graph algorithms are not the focus. No benchmark figures are published yet.
+- **A drop-in replacement for another graph database.** The query surface is SPARQL 1.1 and a documented Cypher subset, not a clone of any product's dialect. See [known limits](/reference/limits/).
+
 ## Where to go next
 
 - **See it work:** the [Quickstart](/start/quickstart/).
 - **Understand it:** [Concepts in ten minutes](/start/concepts/).
-- **Be honest with yourself about fit:** [Known limits](/reference/limits/) and [Standards](/reference/standards/).
+- **Check fit honestly:** [Known limits](/reference/limits/) and [Standards](/reference/standards/).
+- **Try a worked scenario:** the [dairy traceability cookbook](/cookbooks/dairy-traceability/).

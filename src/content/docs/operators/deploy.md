@@ -58,7 +58,7 @@ volumes:
   pgdata:
 ```
 
-Images are published for `linux/amd64` and `linux/arm64`.
+Images are published for `linux/amd64` and `linux/arm64`. See [Run it on](/operators/platforms/) for what has been tested.
 
 :::danger[Do not expose an unauthenticated server]
 With no identity provider configured, the server runs in **open mode** and announces it at startup. Bind it to localhost, or put authentication in front of it, before it is reachable by anyone else. See [Authentication](/operators/authentication/).
