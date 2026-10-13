@@ -3,7 +3,7 @@ title: MCP tool reference
 description: Every tool the GraphOWL MCP server offers, with its parameters. Generated from the server's own tools/list answer.
 ---
 
-The server offers **101 tools**. This page is generated from the server's own `tools/list` answer, so it cannot drift from what an agent actually sees. See the [overview](../mcp-overview/) for how they fit together.
+The server offers **102 tools**. This page is generated from the server's own `tools/list` answer, so it cannot drift from what an agent actually sees. See the [overview](../mcp-overview/) for how they fit together.
 
 ## `align_coverage`
 
@@ -688,6 +688,14 @@ Ask a source database a question in place, through a virtual graph's approved ma
 | `params` | object | no | Values for the query's `$name` parameters: a text, a whole number, or a list of one kind. Not used with SPARQL. |
 | `query` | string | yes | The Cypher text; values go in `params` as `$name`, never into the text. |
 | `workspace` | string | no | The customer's workspace slug. Required in a session scoped to one workspace. |
+
+## `question_coverage`
+
+For each competency question of a pack's model: what stands behind it (the classes, properties and rules recorded as made for it, and whether each is finished), the requirements the question states with the role each plays (explicit, implicit, derived) and whether a person confirmed them, which of those the model covers, and whether the question's query answered in the latest model check. Structure, requirements and answerability are separate facts. Requirements nobody confirmed are proposals: a figure from them measures agreement, not correctness. Read-only.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `pack` | string | yes | The pack whose model to inspect. |
 
 ## `read_uploaded_file`
 

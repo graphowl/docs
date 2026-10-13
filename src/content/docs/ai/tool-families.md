@@ -3,7 +3,7 @@ title: MCP tools by family
 description: The MCP tools grouped by what an agent uses them for.
 ---
 
-The 101 tools, grouped by purpose. The first sentence of each description is shown; the [full reference](/ai/mcp-tools/) has every parameter.
+The 102 tools, grouped by purpose. The first sentence of each description is shown; the [full reference](/ai/mcp-tools/) has every parameter.
 
 ## Remember
 
@@ -147,3 +147,11 @@ The 101 tools, grouped by purpose. The first sentence of each description is sho
 | [`search_nodes`](/ai/mcp-tools/#search_nodes) | Find graph subjects by what they mean, not by keyword. |
 | [`similar_nodes`](/ai/mcp-tools/#similar_nodes) | Subjects most like one you already have, by meaning. |
 | [`traverse`](/ai/mcp-tools/#traverse) | Walk a bounded neighbourhood outward from a subject, within a hop limit. |
+
+## Other
+
+1 tools.
+
+| Tool | What it does |
+|---|---|
+| [`question_coverage`](/ai/mcp-tools/#question_coverage) | For each competency question of a pack's model: what stands behind it (the classes, properties and rules recorded as made for it, and whether each is finished), the requirements the question states with the role each plays (explicit, implicit, derived) and whether a person confirmed them, which of those the model covers, and whether the question's query answered in the latest model check. |

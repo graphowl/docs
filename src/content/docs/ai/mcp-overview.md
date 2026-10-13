@@ -11,7 +11,7 @@ Context is only useful to an agent if it is **current**, **reviewed** and **attr
 
 ## What the tools cover
 
-The server offers 101 tools ([full reference](/ai/mcp-tools/); [by family](/ai/tool-families/)), in these families:
+The server offers 102 tools ([full reference](/ai/mcp-tools/); [by family](/ai/tool-families/)), in these families:
 
 | Family | Examples | What an agent can do |
 |---|---|---|
